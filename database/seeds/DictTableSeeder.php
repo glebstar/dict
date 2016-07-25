@@ -13,14 +13,17 @@ class DictTableSeeder extends Seeder
     {
         DB::table('dict')->insert(['en' => 'you', 'ru' => 'Вы']);
         DB::table('dict')->insert(['en' => 'I', 'ru' => 'я']);
-        DB::table('dict')->insert(['en' => 'to', 'ru' => 'к']);
-        DB::table('dict')->insert(['en' => 'the', 'ru' => 'этот, эти']);
+        DB::table('dict')->insert(['en' => 'to', 'ru' => 'к (направление)']);
         DB::table('dict')->insert(['en' => 'and', 'ru' => 'и']);
-        DB::table('dict')->insert(['en' => 'that', 'ru' => 'это']);
+        DB::table('dict')->insert(['en' => 'the', 'ru' => 'этот, эти']);
+        DB::table('dict')->insert(['en' => 'this', 'ru' => 'это']);
+        DB::table('dict')->insert(['en' => 'that', 'ru' => 'что']);
         DB::table('dict')->insert(['en' => 'of', 'ru' => 'из']);
         DB::table('dict')->insert(['en' => 'me', 'ru' => 'мне']);
+        DB::table('dict')->insert(['en' => 'today', 'ru' => 'сегодня']);
+        DB::table('dict')->insert(['en' => 'so far', 'ru' => 'до сих пор']);
+        DB::table('dict')->insert(['en' => 'excellent', 'ru' => 'отлично, превосходно, великолепно']);
         DB::table('dict')->insert(['en' => 'in', 'ru' => 'в']);
-        DB::table('dict')->insert(['en' => 'this', 'ru' => 'это']);
         DB::table('dict')->insert(['en' => 'for', 'ru' => 'для']);
         DB::table('dict')->insert(['en' => 'no', 'ru' => 'не']);
         DB::table('dict')->insert(['en' => 'have', 'ru' => 'иметь']);
@@ -31,13 +34,14 @@ class DictTableSeeder extends Seeder
         DB::table('dict')->insert(['en' => 'be', 'ru' => 'быть']);
         DB::table('dict')->insert(['en' => 'on', 'ru' => 'на']);
         DB::table('dict')->insert(['en' => 'your', 'ru' => 'ваш']);
+        DB::table('dict')->insert(['en' => 'he', 'ru' => 'он']);
+        DB::table('dict')->insert(['en' => 'him', 'ru' => 'его']);
         DB::table('dict')->insert(['en' => 'was', 'ru' => 'был']);
         DB::table('dict')->insert(['en' => 'we', 'ru' => 'мы']);
         DB::table('dict')->insert(['en' => 'with', 'ru' => 'с']);
         DB::table('dict')->insert(['en' => 'but', 'ru' => 'но']);
         DB::table('dict')->insert(['en' => 'all', 'ru' => 'все']);
         DB::table('dict')->insert(['en' => 'well', 'ru' => 'хорошо']);
-        DB::table('dict')->insert(['en' => 'he', 'ru' => 'он']);
         DB::table('dict')->insert(['en' => 'about', 'ru' => 'о чем-то']);
         DB::table('dict')->insert(['en' => 'right', 'ru' => 'право']);
         DB::table('dict')->insert(['en' => 'get', 'ru' => 'получать']);
@@ -51,9 +55,8 @@ class DictTableSeeder extends Seeder
         DB::table('dict')->insert(['en' => 'can', 'ru' => 'может']);
         DB::table('dict')->insert(['en' => 'up', 'ru' => 'вверх']);
         DB::table('dict')->insert(['en' => 'want', 'ru' => 'хотеть']);
-        DB::table('dict')->insert(['en' => 'now', 'ru' => 'теперь']);
+        DB::table('dict')->insert(['en' => 'now', 'ru' => 'сейчас, теперь']);
         DB::table('dict')->insert(['en' => 'go', 'ru' => 'направляться']);
-        DB::table('dict')->insert(['en' => 'him', 'ru' => 'его']);
         DB::table('dict')->insert(['en' => 'there', 'ru' => 'там']);
         DB::table('dict')->insert(['en' => 'one', 'ru' => 'один']);
         DB::table('dict')->insert(['en' => 'why', 'ru' => 'почему']);
@@ -77,7 +80,7 @@ class DictTableSeeder extends Seeder
         DB::table('dict')->insert(['en' => 'say', 'ru' => 'сказать']);
         DB::table('dict')->insert(['en' => 'take', 'ru' => 'взять']);
         DB::table('dict')->insert(['en' => 'an', 'ru' => 'какой-то из']);
-        DB::table('dict')->insert(['en' => 'way', 'ru' => 'путь']);
+        DB::table('dict')->insert(['en' => 'way', 'ru' => 'путь, способ']);
         DB::table('dict')->insert(['en' => 'us', 'ru' => 'нас']);
         DB::table('dict')->insert(['en' => 'little', 'ru' => 'немного']);
         DB::table('dict')->insert(['en' => 'make', 'ru' => 'изготавливать']);
@@ -86,7 +89,7 @@ class DictTableSeeder extends Seeder
         DB::table('dict')->insert(['en' => 'love', 'ru' => 'любовь']);
         DB::table('dict')->insert(['en' => 'sure', 'ru' => 'уверенный']);
         DB::table('dict')->insert(['en' => 'more', 'ru' => 'больше']);
-        DB::table('dict')->insert(['en' => 'over', 'ru' => 'пере….']);
+        DB::table('dict')->insert(['en' => 'over', 'ru' => 'над, через, свыше']);
         DB::table('dict')->insert(['en' => 'our', 'ru' => 'наш']);
         DB::table('dict')->insert(['en' => 'sorry', 'ru' => 'сожалеть']);
         DB::table('dict')->insert(['en' => 'where', 'ru' => 'где']);
@@ -167,7 +170,7 @@ class DictTableSeeder extends Seeder
         DB::table('dict')->insert(['en' => 'baby', 'ru' => 'младенец']);
         DB::table('dict')->insert(['en' => 'nice', 'ru' => 'милый']);
         DB::table('dict')->insert(['en' => 'father', 'ru' => 'отец']);
-        DB::table('dict')->insert(['en' => 'else', 'ru' => 'еще']);
+        DB::table('dict')->insert(['en' => 'else', 'ru' => 'еще, иначе']);
         DB::table('dict')->insert(['en' => 'stay', 'ru' => 'пребывать']);
         DB::table('dict')->insert(['en' => 'their', 'ru' => 'их']);
         DB::table('dict')->insert(['en' => 'course', 'ru' => 'курс']);
@@ -229,7 +232,6 @@ class DictTableSeeder extends Seeder
         DB::table('dict')->insert(['en' => 'start', 'ru' => 'старт']);
         DB::table('dict')->insert(['en' => 'kill', 'ru' => 'убить']);
         DB::table('dict')->insert(['en' => 'hard', 'ru' => 'трудно']);
-        DB::table('dict')->insert(['en' => 'today', 'ru' => 'сегодня']);
         DB::table('dict')->insert(['en' => 'car', 'ru' => 'автомобиль']);
         DB::table('dict')->insert(['en' => 'ready', 'ru' => 'готовый']);
         DB::table('dict')->insert(['en' => 'until', 'ru' => 'до']);
@@ -999,7 +1001,6 @@ class DictTableSeeder extends Seeder
         DB::table('dict')->insert(['en' => 'stole', 'ru' => 'украл']);
         DB::table('dict')->insert(['en' => 'noticed', 'ru' => 'замеченный']);
         DB::table('dict')->insert(['en' => 'fired', 'ru' => 'запущенный']);
-        DB::table('dict')->insert(['en' => 'excellent', 'ru' => 'превосходный']);
         DB::table('dict')->insert(['en' => 'lived', 'ru' => 'живший']);
         DB::table('dict')->insert(['en' => 'bringing', 'ru' => 'обеспечение']);
         DB::table('dict')->insert(['en' => 'pop', 'ru' => 'популярность']);
@@ -1909,7 +1910,7 @@ class DictTableSeeder extends Seeder
         DB::table('dict')->insert(['en' => 'rex', 'ru' => 'король']);
         DB::table('dict')->insert(['en' => 'chef', 'ru' => 'повар']);
         DB::table('dict')->insert(['en' => 'moves', 'ru' => 'шаги']);
-        DB::table('dict')->insert(['en' => 'awesome', 'ru' => 'удивительный']);
+        DB::table('dict')->insert(['en' => 'awesome', 'ru' => 'удивительный, потрясающе, здорово, классно, отлично']);
         DB::table('dict')->insert(['en' => 'genius', 'ru' => 'гений']);
         DB::table('dict')->insert(['en' => 'extremely', 'ru' => 'чрезвычайно']);
         DB::table('dict')->insert(['en' => 'entirely', 'ru' => 'полностью']);
