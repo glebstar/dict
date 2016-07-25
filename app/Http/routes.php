@@ -11,8 +11,23 @@
 |
 */
 
+use Illuminate\Http\Request;
+use App\Dict;
+
 //Route::get('/', function () {
 //    return view('welcome');
 //});
 
 Route::get('/', ['as'=>'home', 'uses' => 'HomeController@index']);
+
+Route::post('/load', function(Request $request){
+    $words = Dict::where('id', '>', $request->session ()->get('lastid'))->limit(20)->orderBy('id')->get()->toArray();
+    session (['lastid' => $words[count($words)-1]['id']]);
+
+    $data = [
+        'end' => 0,
+        'list' => $words
+    ];
+
+    return response()->json($data);
+});

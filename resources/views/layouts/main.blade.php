@@ -4,7 +4,7 @@
 
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Частотный словарь английских слов онлайн - бесплатно</title>
+	<title>Частотный словарь английских слов онлайн - бесплатно - @yield('add_title')</title>
 	<meta name="description" content="GotYa Free Bootstrap Theme"/>
 	<meta name="keywords" content="Template, Theme, web, html5, css3, Bootstrap" />
 	<meta name="author" content="Łukasz Holeczek from creativeLabs"/>
@@ -37,6 +37,10 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+	<script type="text/javascript">
+    	var csrf = '{{csrf_token()}}';
+	</script>
+
 </head>
 <body>
 
@@ -52,7 +56,7 @@
 				<!--start: Logo -->
 				<div class="logo span3" style="padding-top: 10px;">
 
-					<a class="brand" href="#" style="font-size: 20px;">Частотный словарь английских слов</a>
+					<a class="brand" href="/" style="font-size: 20px;">Частотный словарь английских слов</a>
 
 				</div>
                 <!--end: Logo -->
@@ -73,7 +77,7 @@
 			              				<li class="active"><a href="/">Главная</a></li>
 			              				<li><a href="#">Нужно повторять</a></li>
 										<li><a href="#">Изученные слова</a></li>
-										<li><a href="#">Выход</a></li>
+										<li><a href="#">Об этом сайте</a></li>
 			            			</ul>
 			          			</div>
 			        		</div>
@@ -100,7 +104,7 @@
 			<!-- start: Container -->
 			<div class="container">
 
-				<h2><i class="ico-check ico-white"></i>Частотный словарь английских слов</h2>
+				<h2><i class="@yield('page_title_ico') ico-white"></i>@yield('page_title')</h2>
 
 			</div>
             <!-- end: Container  -->
@@ -112,79 +116,7 @@
 
     <!--start: Wrapper-->
 	<div id="wrapper">
-
-		<!-- start: Container -->
-		<div class="container">
-			<div style="margin-bottom: 25px;">
-				<a class="btn btn-success">Добавить новое слово (будет сразу добавлено в "Повторять чаще")</a>
-			</div>
-			<table class="table table-striped">
-				<tr>
-					<th>English</th>
-					<th>По русски</th>
-					<th>Управление</th>
-				</tr>
-				<tr>
-					<td>you</td>
-					<td data-ru="Вы"><a class="show-ru" href="#">-- показать --</a></td>
-					<td>
-						<a href="#" class="btn btn-success">Убрать в изученные</a>
-						<a href="#" class="btn btn-warning">Хочу повторять чаще</a>
-						<a href="#" class="btn btn-info">Предложить другой перевод</a>
-					</td>
-				</tr>
-				<tr>
-					<td>I</td>
-					<td data-ru="Я"><a class="show-ru" href="#">-- показать --</a></td>
-					<td>
-						<a href="#" class="btn btn-success">Убрать в изученные</a>
-						<a href="#" class="btn btn-warning">Хочу повторять чаще</a>
-						<a href="#" class="btn btn-info">Предложить другой перевод</a>
-					</td>
-				</tr>
-				<tr>
-					<td>to</td>
-					<td data-ru="к"><a class="show-ru" href="#">-- показать --</a></td>
-					<td>
-						<a href="#" class="btn btn-success">Убрать в изученные</a>
-						<a href="#" class="btn btn-warning">Хочу повторять чаще</a>
-						<a href="#" class="btn btn-info">Предложить другой перевод</a>
-					</td>
-				</tr>
-				<tr>
-					<td>the</td>
-					<td data-ru="этот, эти"><a class="show-ru" href="#">-- показать --</a></td>
-					<td>
-						<a href="#" class="btn btn-success">Убрать в изученные</a>
-						<a href="#" class="btn btn-warning">Хочу повторять чаще</a>
-						<a href="#" class="btn btn-info">Предложить другой перевод</a>
-					</td>
-				</tr>
-				<tr>
-					<td>and</td>
-					<td data-ru="и"><a class="show-ru" href="#">-- показать --</a></td>
-					<td>
-						<a href="#" class="btn btn-success">Убрать в изученные</a>
-						<a href="#" class="btn btn-warning">Хочу повторять чаще</a>
-						<a href="#" class="btn btn-info">Предложить другой перевод</a>
-					</td>
-				</tr>
-				<tr>
-					<td>that</td>
-					<td data-ru="это"><a class="show-ru" href="#">-- показать --</a></td>
-					<td>
-						<a href="#" class="btn btn-success">Убрать в изученные</a>
-						<a href="#" class="btn btn-warning">Хочу повторять чаще</a>
-						<a href="#" class="btn btn-info">Предложить другой перевод</a>
-					</td>
-				</tr>
-			</table
-			<div class = "center">
-			<a class="btn btn-link">Загрузить еще...</a>
-			</div>
-		</div>
-        <!-- end: Container -->
-
+	@yield('content')
 	</div>
     <!-- end: Wrapper  -->
 
@@ -214,6 +146,9 @@
 							<li><a href="index.html">Главная</a></li>
 							<li><a href="about.html">Нужно повторять</a></li>
 							<li><a href="services.html">Изученные слова</a></li>
+							<li><a href="services.html">Об этом сайте</a></li>
+							<li><a href="services.html">Связаться с нами</a></li>
+							<li><a href="services.html">Выход</a></li>
 						</ul>
 					</div>
 				</div>
@@ -251,7 +186,7 @@
 		<div class="container">
 
 			<p>
-				&copy; 2016
+				&copy; 2016 From Siberia with Love
 			</p>
 
 		</div>
@@ -269,7 +204,7 @@
 <script src="/js/jquery.cslider.js"></script>
 <script src="/js/slider.js"></script>
 <script def src="/js/custom.js"></script>
-<script src="/js/main.js"></script>
+<script src="/js/main.js?version=1"></script>
     <!-- end: Java Script -->
 
 </body>
