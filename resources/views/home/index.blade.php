@@ -43,7 +43,9 @@
                           </a>
                           <ul class="dropdown-menu">
                                 <li><a class="btn btn-success j-to-learning" data-dict-id="{{$word->id}}">Убрать в изученные</a></li>
+                                @if (!$word->repeatId)
                                 <li><a class="btn btn-warning j-to-repeat" data-dict-id="{{$word->id}}">Хочу повторять чаще</a></li>
+                                @endif
                                 <li><a class="btn btn-info">Предложить другой перевод</a></li>
                           </ul>
                         </div>

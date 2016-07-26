@@ -231,7 +231,7 @@ $request = $_SERVER['REQUEST_URI'];
 <script src="/js/jquery.cslider.js"></script>
 <script src="/js/slider.js"></script>
 <script def src="/js/custom.js"></script>
-<script src="/js/main.js?version=2"></script>
+<script src="/js/main.js?version=3"></script>
     <!-- end: Java Script -->
 
 @yield('add_script')

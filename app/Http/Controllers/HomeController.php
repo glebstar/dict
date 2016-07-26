@@ -15,7 +15,7 @@ class HomeController extends Controller
             $limit = Dict::DICT_LIMIT_NO_AUTH;
             $words = Dict::limit($limit)->orderBy('id')->get();
         } else {
-            $words = Dict::select('dict.*')
+            $words = Dict::select(['dict.*', 'repeat.id AS repeatId'])
                 ->whereNotIn('dict.id', Auth::user()->getLearningsIds())
                 ->leftJoin('repeat', function($join){
                     $join->on('dict.id', '=', 'repeat.dictId')

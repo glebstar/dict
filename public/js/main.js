@@ -15,7 +15,13 @@ $(function(){
 			dataType: 'json',
 			success: function (data) {
 				for(key in data.list) {
-					$('.j-word-table').append('<tr><td>' + data['list'][key]['en'] + '</td><td data-ru=" ' + data['list'][key]['ru'] + '"><a class="show-ru" onclick="return showRu(this);" href="#">-- показать --</a></td><td><div class="btn-group"><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Действия<span class="caret"></span></a><ul class="dropdown-menu"><li><a class="btn btn-success j-to-learning" data-dict-id="' + data['list'][key]['id'] + '" onclick="return toLearnings(this);">Убрать в изученные</a></li><li><a class="btn btn-warning j-to-repeat" data-dict-id="' + data['list'][key]['id'] + '" onclick="return toRepeat(this);">Хочу повторять чаще</a></li><li><a class="btn btn-info">Предложить другой перевод</a></li></ul></td></tr>');
+					if (data['list'][key]['repeatId']) {
+						var repeatcode = '';
+					} else {
+						var repeatcode = '<li><a class="btn btn-warning j-to-repeat" data-dict-id="' + data['list'][key]['id'] + '" onclick="return toRepeat(this);">Хочу повторять чаще</a></li><li>';
+					}
+
+					$('.j-word-table').append('<tr><td>' + data['list'][key]['en'] + '</td><td data-ru=" ' + data['list'][key]['ru'] + '"><a class="show-ru" onclick="return showRu(this);" href="#">-- показать --</a></td><td><div class="btn-group"><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Действия<span class="caret"></span></a><ul class="dropdown-menu"><li><a class="btn btn-success j-to-learning" data-dict-id="' + data['list'][key]['id'] + '" onclick="return toLearnings(this);">Убрать в изученные</a></li>' + repeatcode + '<a class="btn btn-info">Предложить другой перевод</a></li></ul></td></tr>');
 				}
 			}
 		});
