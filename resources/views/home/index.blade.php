@@ -32,7 +32,7 @@
 				</tr>
                 @foreach ($words as $word)
                 <tr>
-					<td>{{ $word->en }}</td>
+					<td>@if ($word->repeatId)<b>@endif{{ $word->en }}@if ($word->repeatId)</b>@endif</td>
 					<td data-ru="{{ $word->ru }}"><a class="show-ru" href="#">-- показать --</a></td>
 					<td>
                         @can('auth')
