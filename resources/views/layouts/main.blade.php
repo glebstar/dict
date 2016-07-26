@@ -75,9 +75,14 @@
 			          			<div class="nav-collapse collapse">
 			            			<ul class="nav">
 			              				<li class="active"><a href="/">Главная</a></li>
-			              				<li><a href="#">Нужно повторять</a></li>
-										<li><a href="#">Изученные слова</a></li>
-										<li><a href="#">Об этом сайте</a></li>
+										@can('auth')
+			              				<li><a href="/repeat">Нужно повторять</a></li>
+										<li><a href="/learning">Изученные слова</a></li>
+										@else
+											<li><a href="/login">Войти</a></li>
+											<li><a href="/register">Регистрация</a></li>
+										@endcan
+										<li><a href="/about">Об этом сайте</a></li>
 			            			</ul>
 			          			</div>
 			        		</div>
@@ -143,12 +148,16 @@
 					<div id="footer-menu-links">
 
 						<ul id="footer-nav">
-							<li><a href="index.html">Главная</a></li>
-							<li><a href="about.html">Нужно повторять</a></li>
-							<li><a href="services.html">Изученные слова</a></li>
-							<li><a href="services.html">Об этом сайте</a></li>
-							<li><a href="services.html">Связаться с нами</a></li>
-							<li><a href="services.html">Выход</a></li>
+							<li><a href="/">Главная</a></li>
+							@can('auth')
+							<li><a href="/repeat">Нужно повторять</a></li>
+							<li><a href="/learning">Изученные слова</a></li>
+							@endcan
+							<li><a href="/about">Об этом сайте</a></li>
+							<li><a href="/contact">Связаться с нами</a></li>
+							@can('auth')
+							<li><a href="/logout">Выход</a></li>
+							@endcan
 						</ul>
 					</div>
 				</div>

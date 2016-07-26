@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +12,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('users')->delete();
+        User::create(array(
+            'email' => 'gleb@edelen.ru',
+            'password' => bcrypt('12345'),
+            'role' => 1
+        ));
+
         $this->call(DictTableSeeder::class);
     }
 }

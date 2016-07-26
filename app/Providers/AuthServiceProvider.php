@@ -26,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
-        //
+        $gate->define('auth', function ($user) {
+            return !empty($user);
+        });
     }
 }
