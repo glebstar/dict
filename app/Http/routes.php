@@ -24,7 +24,7 @@ Route::get('/', ['as'=>'home', 'uses' => 'HomeController@index']);
 
 Route::post('/load', function(Request $request){
     $offset = $request->session ()->get('offsetid');
-    $words = Dict::limit(9)->offset($offset)->orderBy('id')->get()->toArray();
+    $words = Dict::whereNotIn('id', Auth::user()->getLearningsIds())->limit(dict::DICT_LIMIT)->offset($offset)->orderBy('id')->get()->toArray();
 
     session (['offsetid' => $offset += Dict::DICT_LIMIT]);
 
