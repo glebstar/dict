@@ -59,7 +59,8 @@
 			    <a class="btn btn-link j-load-more">Загрузить еще...</a>
                 @else
                     <span class="text-error" style="font-size: 18px;">
-                        <a href="/login" class="white">Войдите</a> или <a href="/register">Зарегистрируйтесь</a>, чтобы смотреть все слова. Это бесплатно!
+                        <a href="/login" class="white">Войдите</a> или <a href="/register">Зарегистрируйтесь</a>, чтобы смотреть все слова. <span class="text-success">Это бесплатно!</span><br /><br />
+                        <span class="text-info">У авторизованного пользователя есть возможность управлять словарем - убирать слова в "Изученные", добавлять в список избранных для частого повторения...</span>
                     </span>
                 @endcan
 			</div>
