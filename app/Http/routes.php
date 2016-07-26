@@ -76,4 +76,8 @@ Route::get('/about', function(Request $request){
     return view('home.empty');
 });
 
+Route::get('/contact', function(Request $request){
+    return view('home.empty');
+});
+
 //Route::get('/home', 'HomeController@index');
