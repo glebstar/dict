@@ -56,10 +56,12 @@ Route::post('/tolearning', function(Request $request){
     if ($user) {
         $dictId = $request->get('dictid');
 
-        $learning = new Learning();
-        $learning->userId = $user->id;
-        $learning->dictId = $dictId;
-        $learning->save();
+        if (!Learning::where('userId', Auth::user()->id)->where('dictId', $dictId)->get()->first()) {
+            $learning         = new Learning();
+            $learning->userId = $user->id;
+            $learning->dictId = $dictId;
+            $learning->save ();
+        }
 
         // убрать из повторяемых
         Repeat::where('userId', $user->id)->where('dictId', $dictId)->delete();
@@ -72,11 +74,12 @@ Route::post('/torepeat', function(Request $request){
     $user = Auth::user();
     if ($user) {
         $dictId = $request->get('dictid');
-
-        $repeat = new Repeat();
-        $repeat->userId = $user->id;
-        $repeat->dictId = $dictId;
-        $repeat->save();
+        if (!Repeat::where('userId', Auth::user()->id)->where('dictId', $dictId)->get()->first()) {
+            $repeat         = new Repeat();
+            $repeat->userId = $user->id;
+            $repeat->dictId = $dictId;
+            $repeat->save ();
+        }
 
         // убрать из изученных
         Learning::where('userId', $user->id)->where('dictId', $dictId)->delete();
@@ -105,6 +108,10 @@ Route::get('/learning', ['middleware' => 'auth', function(){
 }]);
 
 Route::get('/repeat', ['middleware' => 'auth', function(){
+
+    //$a = Learning::where('userId', Auth::user()->id)->where('dictId', 1)->get()->first();
+    //var_dump ($a); exit;
+
     $words = Dict::select([
             'dict.*',
             'repeat.id as repeatId'
