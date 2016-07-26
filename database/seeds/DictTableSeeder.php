@@ -68,7 +68,7 @@ class DictTableSeeder extends Seeder
         DB::table('dict')->insert(['en' => 'when', 'ru' => 'когда']);
         DB::table('dict')->insert(['en' => 'back', 'ru' => 'назад']);
         DB::table('dict')->insert(['en' => 'tell', 'ru' => 'рассказывать']);
-        DB::table('dict')->insert(['en' => 'from', 'ru' => 'от']);
+        DB::table('dict')->insert(['en' => 'from', 'ru' => 'от, из']);
         DB::table('dict')->insert(['en' => 'were', 'ru' => 'были']);
         DB::table('dict')->insert(['en' => 'yes', 'ru' => 'да']);
         DB::table('dict')->insert(['en' => 'his', 'ru' => 'его']);

@@ -37,6 +37,7 @@
                           </a>
                           <ul class="dropdown-menu">
                                 <li><a class="btn btn-success j-to-dict" data-dict-id="{{$word->id}}">Вернуть в общий словарь</a></li>
+                                <li><a class="btn btn-warning j-to-repeat" data-dict-id="{{$word->id}}">Переместить в "Нужно повторять"</a></li>
                           </ul>
                         </div>
 					</td>
@@ -45,4 +46,10 @@
 			</table>
 		</div>
     <!-- end: Container -->
+@endsection
+
+@section('add_script')
+<script type="text/javascript">
+    isLearning = true;
+</script>
 @endsection

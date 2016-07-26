@@ -43,6 +43,7 @@ $request = $_SERVER['REQUEST_URI'];
 
 	<script type="text/javascript">
     	var csrf = '{{csrf_token()}}';
+		var isLearning = false;
 	</script>
 
 </head>
@@ -206,6 +207,19 @@ $request = $_SERVER['REQUEST_URI'];
         <!-- end: Container  -->
 
 	</div>
+
+	<div id="myModal" class="modal hide fade">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Успешно</h3>
+	  </div>
+	  <div class="modal-body">
+		<p>Слово добавлено в список "Повторять чаще"</p>
+	  </div>
+	  <div class="modal-footer">
+		<a href="#" class="btn j-modal-close">Закрыть</a>
+	  </div>
+	</div>
     <!-- end: Copyright -->
 
     <!-- start: Java Script -->
@@ -217,8 +231,10 @@ $request = $_SERVER['REQUEST_URI'];
 <script src="/js/jquery.cslider.js"></script>
 <script src="/js/slider.js"></script>
 <script def src="/js/custom.js"></script>
-<script src="/js/main.js?version=1"></script>
+<script src="/js/main.js?version=2"></script>
     <!-- end: Java Script -->
+
+@yield('add_script')
 
 </body>
 </html>

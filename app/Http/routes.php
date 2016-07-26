@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Dict;
 use App\Learning;
+use App\Repeat;
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -24,7 +25,21 @@ Route::get('/', ['as'=>'home', 'uses' => 'HomeController@index']);
 
 Route::post('/load', function(Request $request){
     $offset = $request->session ()->get('offsetid');
-    $words = Dict::whereNotIn('id', Auth::user()->getLearningsIds())->limit(dict::DICT_LIMIT)->offset($offset)->orderBy('id')->get()->toArray();
+    $words = Dict::select([
+                     'dict.*',
+                     'repeat.id as repeatId'
+                 ])
+                 ->whereNotIn('dict.id', Auth::user()->getLearningsIds())
+                 ->leftJoin('repeat', function($join){
+                     $join->on('dict.id', '=', 'repeat.dictId')
+                          ->where('repeat.userId', '=', Auth::user()->id);
+                 })
+                 ->limit(dict::DICT_LIMIT)
+                 ->offset($offset)
+                 ->orderBy('repeat.id', 'desc')
+                 ->orderBy('dict.id')
+                 ->get()
+                 ->toArray();
 
     session (['offsetid' => $offset += Dict::DICT_LIMIT]);
 
@@ -45,6 +60,26 @@ Route::post('/tolearning', function(Request $request){
         $learning->userId = $user->id;
         $learning->dictId = $dictId;
         $learning->save();
+
+        // убрать из повторяемых
+        Repeat::where('userId', $user->id)->where('dictId', $dictId)->delete();
+    }
+
+    return response()->json([]);
+});
+
+Route::post('/torepeat', function(Request $request){
+    $user = Auth::user();
+    if ($user) {
+        $dictId = $request->get('dictid');
+
+        $repeat = new Repeat();
+        $repeat->userId = $user->id;
+        $repeat->dictId = $dictId;
+        $repeat->save();
+
+        // убрать из изученных
+        Learning::where('userId', $user->id)->where('dictId', $dictId)->delete();
     }
 
     return response()->json([]);
@@ -56,6 +91,7 @@ Route::post('/todict', function(Request $request){
         $dictId = $request->get('dictid');
 
         Learning::where('userId', $user->id)->where('dictId', $dictId)->delete();
+        Repeat::where('userId', $user->id)->where('dictId', $dictId)->delete();
     }
 
     return response()->json([]);
@@ -69,7 +105,19 @@ Route::get('/learning', ['middleware' => 'auth', function(){
 }]);
 
 Route::get('/repeat', ['middleware' => 'auth', function(){
-    return view('home.empty');
+    $words = Dict::select([
+            'dict.*',
+            'repeat.id as repeatId'
+        ])
+        ->whereIn('dict.id', Auth::user()->getRepeatsIds())
+        ->leftJoin('repeat', function($join){
+            $join->on('dict.id', '=', 'repeat.dictId')
+                 ->where('repeat.userId', '=', Auth::user()->id);
+        })
+        ->orderBy('repeat.id', 'desc')
+        ->get();
+
+    return view('home.repeat', ['words' => $words]);
 }]);
 
 Route::get('/about', function(Request $request){

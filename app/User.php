@@ -40,4 +40,16 @@ class User extends Authenticatable
 
         return $result;
     }
+
+    public function getRepeatsIds()
+    {
+        $result = [];
+
+        $repeats = $this->hasMany(Repeat::class, 'userId')->getResults();
+        foreach ($repeats as $r) {
+            $result[] = $r->dictId;
+        }
+
+        return $result;
+    }
 }
