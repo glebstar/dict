@@ -31,7 +31,7 @@
 					<th></th>
 				</tr>
                 @foreach ($words as $word)
-                    <tr>
+                <tr>
 					<td>{{ $word->en }}</td>
 					<td data-ru="{{ $word->ru }}"><a class="show-ru" href="#">-- показать --</a></td>
 					<td>
@@ -42,7 +42,7 @@
                             <span class="caret"></span>
                           </a>
                           <ul class="dropdown-menu">
-                                <li><a class="btn btn-success">Убрать в изученные</a></li>
+                                <li><a class="btn btn-success j-to-learning" data-dict-id="{{$word->id}}">Убрать в изученные</a></li>
                                 <li><a class="btn btn-warning">Хочу повторять чаще</a></li>
                                 <li><a class="btn btn-info">Предложить другой перевод</a></li>
                           </ul>

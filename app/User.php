@@ -23,4 +23,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function learnings()
+    {
+        return $this->hasMany(Learning::class, 'userId');
+    }
+
+    public function getLearningsIds()
+    {
+        $result = [];
+
+        $learnings = $this->hasMany(Learning::class, 'userId')->getResults();
+        foreach ($learnings as $l) {
+            $result[] = $l->dictId;
+        }
+
+        return $result;
+    }
 }

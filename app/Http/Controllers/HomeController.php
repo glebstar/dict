@@ -10,13 +10,14 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $limit = 10;
+        $limit = Dict::DICT_LIMIT;
         if (!Auth::user()) {
-            $limit = 30;
+            $limit = Dict::DICT_LIMIT_NO_AUTH;
+            $words = Dict::limit($limit)->orderBy('id')->get();
+        } else {
+            $words = Dict::whereNotIn('id', Auth::user()->getLearningsIds())->limit($limit)->orderBy('id')->get();
+            session (['offsetid' => Dict::DICT_LIMIT]);
         }
-
-        $words = Dict::limit($limit)->orderBy('id')->get();
-        session (['lastid' => $words[count($words)-1]->id]);
 
         return view('home.index', ['words' => $words]);
     }

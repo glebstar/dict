@@ -1,3 +1,7 @@
+<?php
+$request = $_SERVER['REQUEST_URI'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,15 +78,15 @@
 			          			</a>
 			          			<div class="nav-collapse collapse">
 			            			<ul class="nav">
-			              				<li class="active"><a href="/">Главная</a></li>
+			              				<li<?php if($request == '/'): ?> class="active"<?php endif; ?>><a href="/">Главная</a></li>
 										@can('auth')
-			              				<li><a href="/repeat">Нужно повторять</a></li>
-										<li><a href="/learning">Изученные слова</a></li>
+										<li<?php if($request == '/learning'): ?> class="active"<?php endif; ?>><a href="/learning">Изученные слова</a></li>
+			              				<li<?php if($request == '/repeat'): ?> class="active"<?php endif; ?>><a href="/repeat">Нужно повторять</a></li>
 										@else
 											<li><a href="/login">Войти</a></li>
 											<li><a href="/register">Регистрация</a></li>
 										@endcan
-										<li><a href="/about">Об этом сайте</a></li>
+										<li<?php if($request == '/about'): ?> class="active"<?php endif; ?>><a href="/about">Об этом сайте</a></li>
 			            			</ul>
 			          			</div>
 			        		</div>
@@ -150,8 +154,8 @@
 						<ul id="footer-nav">
 							<li><a href="/">Главная</a></li>
 							@can('auth')
-							<li><a href="/repeat">Нужно повторять</a></li>
 							<li><a href="/learning">Изученные слова</a></li>
+							<li><a href="/repeat">Нужно повторять</a></li>
 							@endcan
 							<li><a href="/about">Об этом сайте</a></li>
 							<li><a href="/contact">Связаться с нами</a></li>
