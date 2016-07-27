@@ -24,10 +24,13 @@
 				<a class="btn btn-success">Добавить новое слово (будет сразу добавлено в "Повторять чаще")</a>
 			</div>
         @endcan
+            <div style="margin-bottom: 25px;">
+                <button class="btn btn-large btn-block btn-info j-change-first" type="button" data-to-change=@if ('en' == $firstlang) "ru" @else "en" @endif><i class="icon-refresh"></i> Переключить вид на @if ('en' == $firstlang) Русский - Английский @else Английский - Русский @endif</button>
+            </div>
 			<table class="table table-striped j-word-table">
 				<tr>
-					<th>English</th>
-					<th>По русски</th>
+					<th><i class="icon-book"></i> Слово</th>
+					<th><i class="icon-tags"></i> Перевод</th>
 					<th></th>
 				</tr>
                 @foreach ($words as $word)

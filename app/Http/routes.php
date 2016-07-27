@@ -24,11 +24,27 @@ use App\Repeat;
 Route::get('/', ['as'=>'home', 'uses' => 'HomeController@index']);
 
 Route::post('/load', function(Request $request){
+    $firstLang = $request->session ()->get('firstlang');
+    if (! $firstLang) {
+        $firstLang = 'en';
+    }
+
+    if ('en' == $firstLang) {
+        $selectDict = [
+            'dict.*',
+            'repeat.id AS repeatId',
+        ];
+    } else {
+        $selectDict = [
+            'dict.id',
+            'dict.en as ru',
+            'dict.ru as en',
+            'repeat.id AS repeatId',
+        ];
+    }
+
     $offset = $request->session ()->get('offsetid');
-    $words = Dict::select([
-                     'dict.*',
-                     'repeat.id as repeatId'
-                 ])
+    $words = Dict::select($selectDict)
                  ->whereNotIn('dict.id', Auth::user()->getLearningsIds())
                  ->leftJoin('repeat', function($join){
                      $join->on('dict.id', '=', 'repeat.dictId')
@@ -100,22 +116,62 @@ Route::post('/todict', function(Request $request){
     return response()->json([]);
 });
 
+Route::post('/changefirst', function(Request $request){
+    $firstlang = $request->get('first');
+    if ('ru' == $firstlang) {
+        session (['firstlang' => 'ru']);
+    } else {
+        session (['firstlang' => 'en']);
+    }
+
+    return response()->json([]);
+});
+
 Route::auth();
 
-Route::get('/learning', ['middleware' => 'auth', function(){
-    $words = Dict::whereIn('id', Auth::user()->getLearningsIds())->orderBy('id')->get();
-    return view('home.learning', ['words' => $words]);
+Route::get('/learning', ['middleware' => 'auth', function(Request $request){
+    $firstLang = $request->session ()->get('firstlang');
+    if (! $firstLang) {
+        $firstLang = 'en';
+    }
+
+    if ('en' == $firstLang) {
+        $selectDict = [
+            'dict.*',
+        ];
+    } else {
+        $selectDict = [
+            'dict.id',
+            'dict.en as ru',
+            'dict.ru as en',
+        ];
+    }
+
+    $words = Dict::select($selectDict)->whereIn('id', Auth::user()->getLearningsIds())->orderBy('id')->get();
+    return view('home.learning', ['words' => $words, 'firstlang' => $firstLang]);
 }]);
 
-Route::get('/repeat', ['middleware' => 'auth', function(){
+Route::get('/repeat', ['middleware' => 'auth', function(Request $request){
+    $firstLang = $request->session ()->get('firstlang');
+    if (! $firstLang) {
+        $firstLang = 'en';
+    }
 
-    //$a = Learning::where('userId', Auth::user()->id)->where('dictId', 1)->get()->first();
-    //var_dump ($a); exit;
-
-    $words = Dict::select([
+    if ('en' == $firstLang) {
+        $selectDict = [
             'dict.*',
-            'repeat.id as repeatId'
-        ])
+            'repeat.id as repeatId',
+        ];
+    } else {
+        $selectDict = [
+            'dict.id',
+            'dict.en as ru',
+            'dict.ru as en',
+            'repeat.id as repeatId',
+        ];
+    }
+
+    $words = Dict::select($selectDict)
         ->whereIn('dict.id', Auth::user()->getRepeatsIds())
         ->leftJoin('repeat', function($join){
             $join->on('dict.id', '=', 'repeat.dictId')
@@ -124,7 +180,7 @@ Route::get('/repeat', ['middleware' => 'auth', function(){
         ->orderBy('repeat.id', 'desc')
         ->get();
 
-    return view('home.repeat', ['words' => $words]);
+    return view('home.repeat', ['words' => $words, 'firstlang' => $firstLang]);
 }]);
 
 Route::get('/about', function(Request $request){
@@ -134,5 +190,3 @@ Route::get('/about', function(Request $request){
 Route::get('/contact', function(Request $request){
     return view('home.empty');
 });
-
-//Route::get('/home', 'HomeController@index');

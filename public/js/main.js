@@ -63,6 +63,23 @@ $(function(){
 		$('#' + $(this).parents('div.modal').attr('id')).modal('hide');
 		return false;
 	});
+
+	$('.j-change-first').on('click', function(){
+		$.ajax({
+			url: '/changefirst',
+			type: 'post',
+			data: {
+				'first': $(this).attr('data-to-change')
+			},
+			headers: {
+				'X-CSRF-TOKEN': csrf
+			},
+			dataType: 'json',
+			success: function (data) {
+				location.reload();
+			}
+		});
+	});
 });
 
 function showRu (obj) {
