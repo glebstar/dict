@@ -19,21 +19,27 @@ class HomeController extends Controller
         if ('en' == $firstLang) {
             $selectDict = [
                 'dict.*',
-                'repeat.id AS repeatId',
             ];
+
+            if (Auth::user()) {
+                $selectDict[] = 'repeat.id AS repeatId';
+            }
         } else {
             $selectDict = [
                 'dict.id',
                 'dict.en as ru',
                 'dict.ru as en',
-                'repeat.id AS repeatId',
             ];
+
+            if (Auth::user()) {
+                $selectDict[] = 'repeat.id AS repeatId';
+            }
         }
 
         $limit = Dict::DICT_LIMIT;
         if (!Auth::user()) {
             $limit = Dict::DICT_LIMIT_NO_AUTH;
-            $words = Dict::limit($limit)->orderBy('id')->get();
+            $words = Dict::select($selectDict)->limit($limit)->orderBy('id')->get();
         } else {
             $words = Dict::select($selectDict)
                 ->whereNotIn('dict.id', Auth::user()->getLearningsIds())
