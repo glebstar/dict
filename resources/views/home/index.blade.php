@@ -5,7 +5,7 @@
 @endsection
 
 @section('page_title_ico')
-    ico-check
+    ico-book
 @endsection
 
 <script type="text/javascript">
