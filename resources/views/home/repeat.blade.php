@@ -5,7 +5,7 @@
 @endsection
 
 @section('page_title_ico')
-    ico-heart
+    ico-repeat
 @endsection
 
 <script type="text/javascript">
