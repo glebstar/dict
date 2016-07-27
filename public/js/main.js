@@ -15,15 +15,17 @@ $(function(){
 			dataType: 'json',
 			success: function (data) {
 				for(key in data.list) {
+					var learningcode = '<li><a class="btn j-to-learning" data-dict-id="' + data['list'][key]['id'] + '" onclick="return toLearnings(this);"><i class="icon-check"></i> Убрать в изученные</a></li>';
 					if (data['list'][key]['repeatId']) {
 						var repeatcode = '';
 						var wordcode = '<td ><b>' + data['list'][key]['en'] + '</b></td>';
 					} else {
-						var repeatcode = '<li><a class="btn btn-warning j-to-repeat" data-dict-id="' + data['list'][key]['id'] + '" onclick="return toRepeat(this);">Хочу повторять чаще</a></li><li>';
+						var repeatcode = '<li><a class="btn j-to-repeat" data-dict-id="' + data['list'][key]['id'] + '" onclick="return toRepeat(this);"><i class="icon-repeat"></i> Хочу повторять чаще</a></li>';
 						var wordcode = '<td>' + data['list'][key]['en'] + '</td>';
 					}
+					var editcode = '<li><a class="btn"><i class="icon-pencil"></i> Предложить другой перевод</a></li>';
 
-					$('.j-word-table').append('<tr>' + wordcode + '<td data-ru=" ' + data['list'][key]['ru'] + '"><a class="show-ru" onclick="return showRu(this);" href="#">-- показать --</a></td><td><div class="btn-group"><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Действия<span class="caret"></span></a><ul class="dropdown-menu"><li><a class="btn btn-success j-to-learning" data-dict-id="' + data['list'][key]['id'] + '" onclick="return toLearnings(this);">Убрать в изученные</a></li>' + repeatcode + '<a class="btn btn-info">Предложить другой перевод</a></li></ul></td></tr>');
+					$('.j-word-table').append('<tr>' + wordcode + '<td data-ru=" ' + data['list'][key]['ru'] + '"><a class="show-ru" onclick="return showRu(this);" href="#">-- показать --</a></td><td><div class="btn-group"><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Действия<span class="caret"></span></a><ul class="dropdown-menu">' + learningcode + repeatcode + editcode + '</ul></td></tr>');
 				}
 			}
 		});

@@ -45,11 +45,11 @@
                             <span class="caret"></span>
                           </a>
                           <ul class="dropdown-menu">
-                                <li><a class="btn btn-success j-to-learning" data-dict-id="{{$word->id}}">Убрать в изученные</a></li>
+                                <li><a class="btn j-to-learning" data-dict-id="{{$word->id}}"><i class="icon-check"></i> Убрать в изученные</a></li>
                                 @if (!$word->repeatId)
-                                <li><a class="btn btn-warning j-to-repeat" data-dict-id="{{$word->id}}">Хочу повторять чаще</a></li>
+                                <li><a class="btn j-to-repeat" data-dict-id="{{$word->id}}"><i class="icon-repeat"></i> Хочу повторять чаще</a></li>
                                 @endif
-                                <li><a class="btn btn-info">Предложить другой перевод</a></li>
+                                <li><a class="btn"><i class="icon-pencil"></i> Предложить другой перевод</a></li>
                           </ul>
                         </div>
                         @endcan

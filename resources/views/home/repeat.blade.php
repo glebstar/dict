@@ -39,8 +39,8 @@
                             <span class="caret"></span>
                           </a>
                           <ul class="dropdown-menu">
-                                <li><a class="btn btn-success j-to-learning" data-dict-id="{{$word->id}}">Убрать в изученные</a></li>
-                                <li><a class="btn btn-warning j-to-dict" data-dict-id="{{$word->id}}">Вернуть в общий словарь</a></li>
+                                <li><a class="btn j-to-learning" data-dict-id="{{$word->id}}"><i class="icon-check"></i> Убрать в изученные</a></li>
+                                <li><a class="btn j-to-dict" data-dict-id="{{$word->id}}"><i class="icon-book"></i> Вернуть в общий словарь</a></li>
                           </ul>
                         </div>
 					</td>

@@ -39,8 +39,8 @@
                             <span class="caret"></span>
                           </a>
                           <ul class="dropdown-menu">
-                                <li><a class="btn btn-success j-to-dict" data-dict-id="{{$word->id}}">Вернуть в общий словарь</a></li>
-                                <li><a class="btn btn-warning j-to-repeat" data-dict-id="{{$word->id}}">Переместить в "Нужно повторять"</a></li>
+                                <li><a class="btn j-to-dict" data-dict-id="{{$word->id}}"><i class="icon-book"></i> Вернуть в общий словарь</a></li>
+                                <li><a class="btn j-to-repeat" data-dict-id="{{$word->id}}"><i class="icon-repeat"></i> Переместить в "Нужно повторять"</a></li>
                           </ul>
                         </div>
 					</td>
