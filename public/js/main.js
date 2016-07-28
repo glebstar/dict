@@ -18,10 +18,10 @@ $(function(){
 					var learningcode = '<li><a class="btn j-to-learning" data-dict-id="' + data['list'][key]['id'] + '" onclick="return toLearnings(this);"><i class="icon-check"></i> Убрать в изученные</a></li>';
 					if (data['list'][key]['repeatId']) {
 						var repeatcode = '';
-						var wordcode = '<td ><b>' + data['list'][key]['en'] + '</b></td>';
+						var wordcode = '<td class="j-word-en"><i class="icon-star-empty"></i> ' + data['list'][key]['en'] + '</td>';
 					} else {
 						var repeatcode = '<li><a class="btn j-to-repeat" data-dict-id="' + data['list'][key]['id'] + '" onclick="return toRepeat(this);"><i class="icon-repeat"></i> Хочу повторять чаще</a></li>';
-						var wordcode = '<td>' + data['list'][key]['en'] + '</td>';
+						var wordcode = '<td class="j-word-en">' + data['list'][key]['en'] + '</td>';
 					}
 					var editcode = '<li><a class="btn"><i class="icon-pencil"></i> Предложить другой перевод</a></li>';
 
@@ -133,9 +133,7 @@ function toRepeat(obj) {
 			if (isLearning) {
 				$(obj).parents('tr').remove();
 			} else {
-				$('#myModal .j-my-modal-header').html('Успешно');
-				$('#myModal .j-my-modal-body').html('Слово добавлено в список "Повторять чаще"');
-				$('#myModal').modal();
+				$(obj).closest('tr').children('.j-word-en').first().html('<i class="icon-star-empty"></i> ' + $(obj).closest('tr').children('.j-word-en').first().html());
 			}
 		}
 	});

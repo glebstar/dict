@@ -35,7 +35,7 @@
 				</tr>
                 @foreach ($words as $word)
                 <tr>
-					<td>@if ($word->repeatId)<b>@endif{{ $word->en }}@if ($word->repeatId)</b>@endif</td>
+					<td class="j-word-en">@if ($word->repeatId)<i class="icon-star-empty"></i> @endif{{ $word->en }}</td>
 					<td data-ru="{{ $word->ru }}"><a class="show-ru" href="#">-- показать --</a></td>
 					<td>
                         @can('auth')

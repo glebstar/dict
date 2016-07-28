@@ -25,11 +25,11 @@ class DictTableSeeder extends Seeder
         DB::table('dict')->insert(['en' => 'excellent', 'ru' => 'отлично, превосходно, великолепно']);
         DB::table('dict')->insert(['en' => 'in', 'ru' => 'в']);
         DB::table('dict')->insert(['en' => 'for', 'ru' => 'для']);
-        DB::table('dict')->insert(['en' => 'no', 'ru' => 'не']);
+        DB::table('dict')->insert(['en' => 'no', 'ru' => 'нет']);
         DB::table('dict')->insert(['en' => 'have', 'ru' => 'иметь']);
         DB::table('dict')->insert(['en' => 'my', 'ru' => 'мой']);
         DB::table('dict')->insert(['en' => 'just', 'ru' => 'только']);
-        DB::table('dict')->insert(['en' => 'not', 'ru' => 'нет']);
+        DB::table('dict')->insert(['en' => 'not', 'ru' => 'не']);
         DB::table('dict')->insert(['en' => 'do', 'ru' => 'делать']);
         DB::table('dict')->insert(['en' => 'be', 'ru' => 'быть']);
         DB::table('dict')->insert(['en' => 'on', 'ru' => 'на']);
