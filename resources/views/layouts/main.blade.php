@@ -211,10 +211,10 @@ $request = $_SERVER['REQUEST_URI'];
 	<div id="myModal" class="modal hide fade">
 	  <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h3>Успешно</h3>
+		<h3 class="j-my-modal-header">Успешно</h3>
 	  </div>
 	  <div class="modal-body">
-		<p>Слово добавлено в список "Повторять чаще"</p>
+		<p class="j-my-modal-body">Слово добавлено в список "Повторять чаще"</p>
 	  </div>
 	  <div class="modal-footer">
 		<a href="#" class="btn j-modal-close">Закрыть</a>
@@ -231,7 +231,7 @@ $request = $_SERVER['REQUEST_URI'];
 <script src="/js/jquery.cslider.js"></script>
 <script src="/js/slider.js"></script>
 <script def src="/js/custom.js"></script>
-<script src="/js/main.js?version=6"></script>
+<script src="/js/main.js?version=7"></script>
     <!-- end: Java Script -->
 
 @yield('add_script')

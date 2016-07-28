@@ -82,6 +82,17 @@ $(function(){
 			}
 		});
 	});
+
+	$('.j-add-word').on('click', function(){
+		$('#modalAddWord').modal();
+	});
+
+	$('.j-add-word-submit').on('click', function(){
+		$('#modalAddWord').modal('hide');
+		$('#myModal .j-my-modal-header').html('Трудимся над этим...');
+		$('#myModal .j-my-modal-body').html('Функционал в разработке, скоро будет.');
+		$('#myModal').modal();
+	});
 });
 
 function showRu (obj) {
@@ -122,6 +133,8 @@ function toRepeat(obj) {
 			if (isLearning) {
 				$(obj).parents('tr').remove();
 			} else {
+				$('#myModal .j-my-modal-header').html('Успешно');
+				$('#myModal .j-my-modal-body').html('Слово добавлено в список "Повторять чаще"');
 				$('#myModal').modal();
 			}
 		}
