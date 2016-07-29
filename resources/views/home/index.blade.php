@@ -96,7 +96,7 @@
                   <div class="control-group">
                     <label class="control-label" for="j-add-word-input-desc">Описание</label>
                     <div class="controls">
-                        <textarea style="width: 300px;" rows="5" id="j-add-word-input-desc" placeholder="Описание"></textarea>
+                        <textarea style="width: 300px;" rows="5" id="j-add-word-input-desc" placeholder="Описание (необязательно)"></textarea>
                     </div>
                   </div>
                 </form>
