@@ -77,6 +77,8 @@
             <h3>Добавить новое слово</h3>
           </div>
           <div class="modal-body">
+              <div class="error hidden">
+              </div>
               <p class="text-info">Слово будет сразу добавлено в "Нужно повторять"</p>
               <form class="form-horizontal">
                   <div class="control-group">

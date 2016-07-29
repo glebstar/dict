@@ -67,6 +67,45 @@ Route::post('/load', function(Request $request){
     return response()->json($data);
 });
 
+Route::post('/addword', ['middleware' => 'auth', function(Request $request){
+    $data = [
+        'result' => 'ok',
+    ];
+
+    $v = Validator::make($request->all(), [
+        'en' => 'required|max:120',
+        'ru' => 'required|max:255',
+    ]);
+
+    if ($v->fails()) {
+        $errors = $v->errors()->all();
+
+        $data = [
+            'result' => 'er',
+            'errors' => [],
+        ];
+
+        foreach ($errors as $e) {
+            $data['errors'][] = $e;
+        }
+    } else {
+        $user = Auth::user();
+
+        $word = new Dict();
+        $word->en = $request->en;
+        $word->ru = $request->ru;
+        $word->description = $request->description;
+        $word->save();
+
+        $repeat         = new Repeat();
+        $repeat->userId = $user->id;
+        $repeat->dictId = $word->id;
+        $repeat->save ();
+    }
+
+    return response()->json($data);
+}]);
+
 Route::post('/tolearning', function(Request $request){
     $user = Auth::user();
     if ($user) {

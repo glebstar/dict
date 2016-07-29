@@ -88,10 +88,39 @@ $(function(){
 	});
 
 	$('.j-add-word-submit').on('click', function(){
+		$.ajax({
+			url: '/addword',
+			type: 'post',
+			data: {
+				'en': $('#j-add-word-input-en').val(),
+				'ru': $('#j-add-word-input-ru').val(),
+				'description': $('#j-add-word-input-desc').val(),
+			},
+			headers: {
+				'X-CSRF-TOKEN': csrf
+			},
+			dataType: 'json',
+			success: function (data) {
+				if (data.result == 'ok') {
+					$('#modalAddWord').modal('hide');
+					$('#myModal .j-my-modal-header').html('Успешно!');
+					$('#myModal .j-my-modal-body').html('<p>Новое слово добавлено в словарь!</p>');
+					$('#myModal').modal();
+				} else {
+					$('#modalAddWord div.error').removeClass('hidden');
+					for(key in data.errors) {
+						$('#modalAddWord div.error').append('<p class="text-error">' + data.errors[key] + '</p>');
+					}
+				}
+			}
+		});
+
+		/**
 		$('#modalAddWord').modal('hide');
 		$('#myModal .j-my-modal-header').html('Трудимся над этим...');
 		$('#myModal .j-my-modal-body').html('Функционал в разработке, скоро будет.');
 		$('#myModal').modal();
+		 */
 	});
 });
 
