@@ -44,7 +44,7 @@ $request = $_SERVER['REQUEST_URI'];
 	<script type="text/javascript">
     	var csrf = '{{csrf_token()}}';
 		var isLearning = false;
-		var firstlang = '{{$firstlang}}';
+		var firstlang = '<?php echo isset($firstlang) ? $firstlang : ''; ?>';
 	</script>
 
 </head>
