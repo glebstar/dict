@@ -39,6 +39,7 @@ Route::post('/load', function(Request $request){
             'dict.id',
             'dict.en as ru',
             'dict.ru as en',
+            'dict.trans',
             'dict.description',
             'repeat.id AS repeatId',
         ];
@@ -95,6 +96,7 @@ Route::post('/addword', ['middleware' => 'auth', function(Request $request){
         $word = new Dict();
         $word->en = str_replace ('"', '&#34;', $request->en);
         $word->ru = str_replace ('"', '&#34;', $request->ru);
+        $word->trans = str_replace ('"', '&#34;', $request->trans);
         $word->description = str_replace ('"', '&#34;', $request->description);
         $word->save();
 
@@ -184,6 +186,7 @@ Route::get('/learning', ['middleware' => 'auth', function(Request $request){
             'dict.id',
             'dict.en as ru',
             'dict.ru as en',
+            'dict.trans',
             'dict.description',
         ];
     }
@@ -209,6 +212,7 @@ Route::get('/repeat', ['middleware' => 'auth', function(Request $request){
             'dict.en as ru',
             'dict.ru as en',
             'dict.description',
+            'dict.trans',
             'repeat.id as repeatId',
         ];
     }
@@ -239,6 +243,7 @@ Route::post('/editword', ['middleware' => 'auth', function(Request $request){
         'id' => 'required',
         'en' => 'required|max:120',
         'ru' => 'required|max:255',
+        'trans' => 'required',
         'description' => 'required',
     ]);
 
@@ -257,6 +262,7 @@ Route::post('/editword', ['middleware' => 'auth', function(Request $request){
         $word = Dict::find($request->id);;
         $word->en = str_replace ('"', '&#34;', $request->en);
         $word->ru = str_replace ('"', '&#34;', $request->ru);
+        $word->trans = str_replace ('"', '&#34;', $request->trans);
         $word->description = str_replace ('"', '&#34;', $request->description);
         $word->save();
     }

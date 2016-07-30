@@ -13,7 +13,6 @@
     var isEditor = false;
     @can('editor')
     isEditor = true;
-    var firstlang = '{{$firstlang}}';
     @endcan
 </script>
 
@@ -43,9 +42,9 @@
                     @endcan
 				</tr>
                 @foreach ($words as $word)
-                <tr data-word-id="{{$word->id}}">
-					<td class="j-word-en" data-en="{{ $word->en }}">@if ($word->repeatId)<i class="icon-star-empty"></i> @endif{{ $word->en }}</td>
-					<td class="j-word-ru" data-ru="{{ $word->ru }}"><a class="show-ru" href="#">-- показать --</a></td>
+                <tr id="j-tr-id-{{$word->id}}" data-word-id="{{$word->id}}">
+					<td class="j-word-en" data-en="{{ $word->en }}" data-trans="{{$word->trans}}">@if ($word->repeatId)<i class="icon-star-empty"></i> @endif{{ $word->en }}@if($word->trans && 'en' == $firstlang) [{{$word->trans}}]@endif</td>
+					<td class="j-word-ru" data-ru="{{ $word->ru }}@if($word->trans && 'en' != $firstlang) [{{$word->trans}}]@endif"><a class="show-ru" href="#">-- показать --</a></td>
                     <td class="j-word-description" data-description="{{$word->description}}"><i class="icon-zoom-in j-show-description" style="cursor: pointer" data-description="<?php echo nl2br($word->description); ?>" data-word="{{ $word->en }} - {{ $word->ru }}"></i></td>
 					<td>
                         @can('auth')
@@ -106,6 +105,12 @@
                     <label class="control-label" for="j-add-word-input-ru">Перевод</label>
                     <div class="controls">
                       <input style="width: 300px;" type="text" id="j-add-word-input-ru" placeholder="Перевод">
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="j-add-word-input-ru">Транскрипция</label>
+                    <div class="controls">
+                      <input style="width: 300px;" type="text" id="j-add-word-input-trans" placeholder="Транскрипция (необязательно)">
                     </div>
                   </div>
                   <div class="control-group">
