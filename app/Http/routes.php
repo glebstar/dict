@@ -244,7 +244,6 @@ Route::post('/editword', ['middleware' => 'auth', function(Request $request){
         'en' => 'required|max:120',
         'ru' => 'required|max:255',
         'trans' => 'required',
-        'description' => 'required',
     ]);
 
     if ($v->fails()) {
