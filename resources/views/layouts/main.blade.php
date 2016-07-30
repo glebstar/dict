@@ -81,8 +81,8 @@ $request = $_SERVER['REQUEST_URI'];
 			            			<ul class="nav">
 			              				<li<?php if($request == '/'): ?> class="active"<?php endif; ?>><a href="/">Главная</a></li>
 										@can('auth')
+										<li<?php if($request == '/repeat'): ?> class="active"<?php endif; ?>><a href="/repeat">Нужно повторять</a></li>
 										<li<?php if($request == '/learning'): ?> class="active"<?php endif; ?>><a href="/learning">Изученные слова</a></li>
-			              				<li<?php if($request == '/repeat'): ?> class="active"<?php endif; ?>><a href="/repeat">Нужно повторять</a></li>
 										@else
 											<li><a href="/login">Войти</a></li>
 											<li><a href="/register">Регистрация</a></li>
@@ -155,8 +155,8 @@ $request = $_SERVER['REQUEST_URI'];
 						<ul id="footer-nav">
 							<li><a href="/">Главная</a></li>
 							@can('auth')
-							<li><a href="/learning">Изученные слова</a></li>
 							<li><a href="/repeat">Нужно повторять</a></li>
+							<li><a href="/learning">Изученные слова</a></li>
 							@endcan
 							<li><a href="/about">Об этом сайте</a></li>
 							<li><a href="/contact">Связаться с нами</a></li>
@@ -231,7 +231,7 @@ $request = $_SERVER['REQUEST_URI'];
 <script src="/js/jquery.cslider.js"></script>
 <script src="/js/slider.js"></script>
 <script def src="/js/custom.js"></script>
-<script src="/js/main.js?version=9"></script>
+<script src="/js/main.js?version=10"></script>
     <!-- end: Java Script -->
 
 @yield('add_script')

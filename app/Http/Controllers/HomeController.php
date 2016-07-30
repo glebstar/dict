@@ -29,6 +29,7 @@ class HomeController extends Controller
                 'dict.id',
                 'dict.en as ru',
                 'dict.ru as en',
+                'dict.description',
             ];
 
             if (Auth::user()) {

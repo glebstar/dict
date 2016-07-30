@@ -7,6 +7,9 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 
 class AuthServiceProvider extends ServiceProvider
 {
+    const AUTH_ADMIN_ROLE = 1;
+    const AUTH_EDITOR_ROLE = 3;
+
     /**
      * The policy mappings for the application.
      *
@@ -28,6 +31,22 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('auth', function ($user) {
             return !empty($user);
+        });
+
+        $gate->define('admin', function ($user) {
+            return !empty($user) && self::AUTH_ADMIN_ROLE == $user->role;
+        });
+
+        $gate->define('editor', function ($user) {
+            if (empty($user)) {
+                return false;
+            }
+
+            if (self::AUTH_ADMIN_ROLE == $user->role || self::AUTH_EDITOR_ROLE == $user->role) {
+                return true;
+            }
+
+            return false;
         });
     }
 }

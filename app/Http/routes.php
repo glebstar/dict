@@ -39,6 +39,7 @@ Route::post('/load', function(Request $request){
             'dict.id',
             'dict.en as ru',
             'dict.ru as en',
+            'dict.description',
             'repeat.id AS repeatId',
         ];
     }
@@ -92,9 +93,9 @@ Route::post('/addword', ['middleware' => 'auth', function(Request $request){
         $user = Auth::user();
 
         $word = new Dict();
-        $word->en = $request->en;
-        $word->ru = $request->ru;
-        $word->description = $request->description;
+        $word->en = str_replace ('"', '&#34;', $request->en);
+        $word->ru = str_replace ('"', '&#34;', $request->ru);
+        $word->description = str_replace ('"', '&#34;', $request->description);
         $word->save();
 
         $repeat         = new Repeat();
@@ -183,6 +184,7 @@ Route::get('/learning', ['middleware' => 'auth', function(Request $request){
             'dict.id',
             'dict.en as ru',
             'dict.ru as en',
+            'dict.description',
         ];
     }
 
@@ -206,6 +208,7 @@ Route::get('/repeat', ['middleware' => 'auth', function(Request $request){
             'dict.id',
             'dict.en as ru',
             'dict.ru as en',
+            'dict.description',
             'repeat.id as repeatId',
         ];
     }
@@ -220,6 +223,46 @@ Route::get('/repeat', ['middleware' => 'auth', function(Request $request){
         ->get();
 
     return view('home.repeat', ['words' => $words, 'firstlang' => $firstLang]);
+}]);
+
+Route::post('/editword', ['middleware' => 'auth', function(Request $request){
+    $data = [
+        'result' => 'ok',
+    ];
+
+    if (Gate::denies('editor')) {
+        // как ни в чем не бывало )
+        return response()->json($data);
+    }
+
+    $v = Validator::make($request->all(), [
+        'id' => 'required',
+        'en' => 'required|max:120',
+        'ru' => 'required|max:255',
+        'description' => 'required',
+    ]);
+
+    if ($v->fails()) {
+        $errors = $v->errors()->all();
+
+        $data = [
+            'result' => 'er',
+            'errors' => [],
+        ];
+
+        foreach ($errors as $e) {
+            $data['errors'][] = $e;
+        }
+    } else {
+        $word = Dict::find($request->id);;
+        $word->en = str_replace ('"', '&#34;', $request->en);
+        $word->ru = str_replace ('"', '&#34;', $request->ru);
+        $word->description = str_replace ('"', '&#34;', $request->description);
+        $word->save();
+    }
+
+    return response()->json($data);
+
 }]);
 
 Route::get('/about', function(Request $request){

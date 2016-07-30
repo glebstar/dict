@@ -27,11 +27,13 @@
 					<th><i class="icon-book"></i> Слово</th>
 					<th><i class="icon-tags"></i> Перевод</th>
 					<th></th>
+                    <th></th>
 				</tr>
                 @foreach ($words as $word)
                 <tr>
 					<td>{{ $word->en }}</td>
 					<td data-ru="{{ $word->ru }}"><a class="show-ru" href="#">-- показать --</a></td>
+                    <td><i class="icon-zoom-in j-show-description" style="cursor: pointer" data-description="<?php echo nl2br($word->description); ?>" data-word="{{ $word->en }} - {{ $word->ru }}"></i></td>
 					<td>
 						<div class="btn-group">
                           <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">

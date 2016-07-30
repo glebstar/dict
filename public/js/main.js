@@ -18,14 +18,22 @@ $(function(){
 					var learningcode = '<li><a class="btn j-to-learning" data-dict-id="' + data['list'][key]['id'] + '" onclick="return toLearnings(this);"><i class="icon-check"></i> Убрать в изученные</a></li>';
 					if (data['list'][key]['repeatId']) {
 						var repeatcode = '';
-						var wordcode = '<td class="j-word-en"><i class="icon-star-empty"></i> ' + data['list'][key]['en'] + '</td>';
+						var wordcode = '<td data-en="' +  data['list'][key]['en'] + '" class="j-word-en"><i class="icon-star-empty"></i> ' + data['list'][key]['en'] + '</td>';
 					} else {
 						var repeatcode = '<li><a class="btn j-to-repeat" data-dict-id="' + data['list'][key]['id'] + '" onclick="return toRepeat(this);"><i class="icon-repeat"></i> Хочу повторять чаще</a></li>';
-						var wordcode = '<td class="j-word-en">' + data['list'][key]['en'] + '</td>';
+						var wordcode = '<td data-en="' +  data['list'][key]['en'] + '" class="j-word-en">' + data['list'][key]['en'] + '</td>';
 					}
-					var editcode = '<li><a class="btn"><i class="icon-pencil"></i> Предложить другой перевод</a></li>';
 
-					$('.j-word-table').append('<tr>' + wordcode + '<td data-ru=" ' + data['list'][key]['ru'] + '"><a class="show-ru" onclick="return showRu(this);" href="#">-- показать --</a></td><td><div class="btn-group"><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Действия<span class="caret"></span></a><ul class="dropdown-menu">' + learningcode + repeatcode + editcode + '</ul></td></tr>');
+					var transcode = '<td class="j-word-ru" data-ru="' + data['list'][key]['ru'] + '"><a class="show-ru" onclick="return showRu(this);" href="#">-- показать --</a></td>';
+
+					var description = '<td class="j-word-description" data-description="' + data['list'][key]['description'] + '"><i class="icon-zoom-in j-show-description" style="cursor: pointer" data-description="' + nl2br(data['list'][key]['description']) + '" data-word="' + data['list'][key]['en'] + ' - ' + data['list'][key]['ru'] + '" onclick="showDescription(this);"></i></td>';
+
+					var editcode = '';
+					if (isEditor) {
+						editcode = '<td><i style="cursor: pointer" class="icon-pencil j-edit-word" onclick="return editWordShow(this);"></i></td>';
+					}
+
+					$('.j-word-table').append('<tr data-word-id="' + data['list'][key]['id'] + '">' + wordcode + transcode + description + '<td><div class="btn-group"><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Действия<span class="caret"></span></a><ul class="dropdown-menu">' + learningcode + repeatcode + '</ul></td>' + editcode + '</tr>');
 				}
 			}
 		});
@@ -84,6 +92,14 @@ $(function(){
 	});
 
 	$('.j-add-word').on('click', function(){
+		$('#modalAddWord h3').html('Добавить новое слово');
+		$('#modalAddWord p.j-add-word-info').html('Слово будет сразу добавлено в "Нужно повторять"');
+		$('#j-add-word-input-en').val('');
+		$('#j-add-word-input-ru').val('');
+		$('#j-add-word-input-desc').val('');
+		$('#modalAddWord div.error').addClass('hidden').html('');
+		$('#modalAddWord .j-add-word-submit').show();
+		$('#modalAddWord .j-edit-word-submit').hide();
 		$('#modalAddWord').modal();
 	});
 
@@ -115,12 +131,42 @@ $(function(){
 			}
 		});
 
-		/**
-		$('#modalAddWord').modal('hide');
-		$('#myModal .j-my-modal-header').html('Трудимся над этим...');
-		$('#myModal .j-my-modal-body').html('Функционал в разработке, скоро будет.');
-		$('#myModal').modal();
-		 */
+		return false;
+	});
+
+	$('.j-show-description').on('click', function(){
+		return showDescription(this);
+	});
+
+	$('.j-edit-word').on('click', function(){
+		return editWordShow(this);
+	});
+
+	$('.j-edit-word-submit').on('click', function(){
+		$.ajax({
+			url: '/editword',
+			type: 'post',
+			data: {
+				'id': $('#j-edit-word-id').html(),
+				'en': $('#j-add-word-input-en').val(),
+				'ru': $('#j-add-word-input-ru').val(),
+				'description': $('#j-add-word-input-desc').val(),
+			},
+			headers: {
+				'X-CSRF-TOKEN': csrf
+			},
+			dataType: 'json',
+			success: function (data) {
+				if (data.result == 'ok') {
+					$('#modalAddWord').modal('hide');
+				} else {
+					$('#modalAddWord div.error').removeClass('hidden');
+					for(key in data.errors) {
+						$('#modalAddWord div.error').append('<p class="text-error">' + data.errors[key] + '</p>');
+					}
+				}
+			}
+		});
 	});
 });
 
@@ -167,4 +213,33 @@ function toRepeat(obj) {
 		}
 	});
 	return false;
+}
+
+function showDescription (obj) {
+	$('#myModal .j-my-modal-header').html('Дополнительная информация');
+	$('#myModal .j-my-modal-body').html('<p class="text-info">' + $(obj).attr('data-word') +'</p>'  + $(obj).attr('data-description'));
+	$('#myModal').modal();
+	return false;
+}
+
+function editWordShow (obj) {
+	if('en' != firstlang) {
+		alert('Переключи словари, уважаемый!');
+		return false;
+	}
+
+	$('#modalAddWord h3').html('Редактировать слово');
+	$('#modalAddWord p.j-add-word-info').html('');
+	$('#j-edit-word-id').html('').html($(obj).closest('tr').first().attr('data-word-id'));
+	$('#j-add-word-input-en').val($(obj).closest('tr').children('.j-word-en').first().attr('data-en'));
+	$('#j-add-word-input-ru').val($(obj).closest('tr').children('.j-word-ru').first().attr('data-ru'));
+	$('#j-add-word-input-desc').val($(obj).closest('tr').children('.j-word-description').first().attr('data-description'));
+	$('#modalAddWord div.error').addClass('hidden').html('');
+	$('#modalAddWord .j-add-word-submit').hide();
+	$('#modalAddWord .j-edit-word-submit').removeClass('hidden').show();
+	$('#modalAddWord').modal();
+}
+
+function nl2br( str ) {
+	return str.replace(/([^>])\n/g, '$1<br/>');
 }
