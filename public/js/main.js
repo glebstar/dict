@@ -247,7 +247,11 @@ function toRepeat(obj) {
 
 function showDescription (obj) {
 	$('#myModal .j-my-modal-header').html('Дополнительная информация');
-	$('#myModal .j-my-modal-body').html('<p class="text-info">' + $(obj).attr('data-word') +'</p>'  + $(obj).attr('data-description'));
+	var trans = '';
+	if ($(obj).closest('tr').children('td.j-word-en').first().attr('data-trans')) {
+		trans = '<p class="text-warning" style="font-size: 16px;">[' + $(obj).closest('tr').children('td.j-word-en').first().attr('data-trans') + ']</p>';
+	}
+	$('#myModal .j-my-modal-body').html('<p class="text-info" style="font-size: 16px;">' + $(obj).attr('data-word') +'</p>' + trans + $(obj).attr('data-description'));
 	$('#myModal').modal();
 	return false;
 }
