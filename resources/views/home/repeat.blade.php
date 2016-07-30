@@ -31,8 +31,8 @@
 				</tr>
                 @foreach ($words as $word)
                 <tr>
-					<td>{{ $word->en }}</td>
-					<td data-ru="{{ $word->ru }}"><a class="show-ru" href="#">-- показать --</a></td>
+					<td>{{ $word->en }}@if($word->trans && 'en' == $firstlang) [{{$word->trans}}]@endif</td>
+					<td data-ru="{{ $word->ru }}@if($word->trans && 'en' != $firstlang) [{{$word->trans}}]@endif"><a class="show-ru" href="#">-- показать --</a></td>
                     <td><i class="icon-zoom-in j-show-description" style="cursor: pointer" data-description="<?php echo nl2br($word->description); ?>" data-word="{{ $word->en }} - {{ $word->ru }}"></i></td>
 					<td>
 						<div class="btn-group">
