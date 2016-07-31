@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTransColumnToDict extends Migration
+class AddOrderColumnToDict extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddTransColumnToDict extends Migration
     public function up()
     {
         Schema::table('dict', function (Blueprint $table) {
-            $table->string('trans', 100)->default('');
+            $table->integer('order')->default(30000);
         });
+
+        DB::select('UPDATE `dict` SET `order` = `id`');
     }
 
     /**
@@ -25,7 +27,7 @@ class AddTransColumnToDict extends Migration
     public function down()
     {
         Schema::table('dict', function ($table) {
-            $table->dropColumn('trans');
+            $table->dropColumn('order');
         });
     }
 }

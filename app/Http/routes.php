@@ -55,6 +55,7 @@ Route::post('/load', function(Request $request){
                  ->limit(dict::DICT_LIMIT)
                  ->offset($offset)
                  ->orderBy('repeat.id', 'desc')
+                 ->orderBy('dict.order')
                  ->orderBy('dict.id')
                  ->get()
                  ->toArray();
@@ -258,11 +259,16 @@ Route::post('/editword', ['middleware' => 'auth', function(Request $request){
             $data['errors'][] = $e;
         }
     } else {
+        $order = (int)$request->get('order');
+
         $word = Dict::find($request->id);;
         $word->en = str_replace ('"', '&#34;', $request->en);
         $word->ru = str_replace ('"', '&#34;', $request->ru);
         $word->trans = str_replace ('"', '&#34;', $request->trans);
         $word->description = str_replace ('"', '&#34;', $request->description);
+        if ($order > 0) {
+            $word->order = $order;
+        }
         $word->save();
     }
 

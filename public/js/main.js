@@ -115,6 +115,7 @@ $(function(){
 		$('#modalAddWord div.error').addClass('hidden').html('');
 		$('#modalAddWord .j-add-word-submit').show();
 		$('#modalAddWord .j-edit-word-submit').hide();
+		$('#j-add-word-input-order').closest('div.control-group').hide();
 		$('#modalAddWord').modal();
 	});
 
@@ -167,6 +168,7 @@ $(function(){
 				'en': $('#j-add-word-input-en').val(),
 				'ru': $('#j-add-word-input-ru').val(),
 				'trans': $('#j-add-word-input-trans').val(),
+				'order': $('#j-add-word-input-order').val(),
 				'description': $('#j-add-word-input-desc').val(),
 			},
 			headers: {
@@ -196,6 +198,17 @@ $(function(){
 		});
 
 		return false;
+	});
+
+	$('.j-word-search-btn').on('click', function(){
+		if ($('#j-word-search-input').val()) {
+			location.href = '/?search=' + $('#j-word-search-input').val();
+		}
+		return false;
+	});
+
+	$('.j-word-search-clean-btn').on('click', function(){
+		location.href = '/';
 	});
 });
 
@@ -273,6 +286,7 @@ function editWordShow (obj) {
 	$('#modalAddWord div.error').addClass('hidden').html('');
 	$('#modalAddWord .j-add-word-submit').hide();
 	$('#modalAddWord .j-edit-word-submit').removeClass('hidden').show();
+	$('#j-add-word-input-order').closest('div.control-group').removeClass('hidden').show();
 	$('#modalAddWord').modal();
 }
 

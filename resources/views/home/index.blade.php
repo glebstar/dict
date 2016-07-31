@@ -23,11 +23,18 @@
 @section('content')
     <!-- start: Container -->
     <div class="container">
-		@can('auth')
+
         <div style="margin-bottom: 25px;">
-				<a class="btn btn-success j-add-word">Добавить новое слово (будет сразу добавлено в "Повторять чаще")</a>
+            @can('auth')
+                <a class="btn btn-success j-add-word">Добавить новое слово (будет сразу добавлено в "Повторять чаще")</a>&nbsp;&nbsp;&nbsp;
+            @endcan
+                <input id="j-word-search-input" type="text" value="@if($search){{$search}}@endif" class="input-large search-query">
+                <a class="btn btn-mini j-word-search-btn">Найти слово</a>
+                @if($search)
+                <a class="btn btn-warning btn-mini j-word-search-clean-btn">Сбросить поиск</a>
+                @endif
 			</div>
-        @endcan
+
             <div style="margin-bottom: 25px;">
                 <button class="btn btn-large btn-block btn-info j-change-first" type="button" data-to-change=@if ('en' == $firstlang) "ru" @else "en" @endif><i class="icon-refresh"></i> Переключить вид на @if ('en' == $firstlang) Русский - Английский @else Английский - Русский @endif</button>
             </div>
@@ -72,7 +79,9 @@
 			</table>
 			<div class="center">
                 @can('auth')
+                @if(!$search)
 			    <a class="btn btn-link j-load-more">Загрузить еще...</a>
+                @endif
                 @else
                     <span class="text-error" style="font-size: 18px;">
                         <a href="/login" class="white">Войдите</a> или <a href="/register">Зарегистрируйтесь</a>, чтобы смотреть все слова. <span class="text-success">Это бесплатно!</span><br /><br />
@@ -108,7 +117,7 @@
                     </div>
                   </div>
                   <div class="control-group">
-                    <label class="control-label" for="j-add-word-input-ru">Транскрипция</label>
+                    <label class="control-label" for="j-add-word-input-trans">Транскрипция</label>
                     <div class="controls">
                       <input style="width: 300px;" type="text" id="j-add-word-input-trans" placeholder="Транскрипция (необязательно)">
                     </div>
@@ -119,6 +128,14 @@
                         <textarea style="width: 300px;" rows="5" id="j-add-word-input-desc" placeholder="Описание (необязательно)"></textarea>
                     </div>
                   </div>
+                  @can('editor')
+                  <div class="control-group hidden">
+                    <label class="control-label" for="j-add-word-input-order">Порядок</label>
+                    <div class="controls">
+                      <input style="width: 300px;" type="text" id="j-add-word-input-order" placeholder="Очередность в словаре (необязательно)">
+                    </div>
+                  </div>
+                  @endcan
                 </form>
           </div>
           <div class="modal-footer">
