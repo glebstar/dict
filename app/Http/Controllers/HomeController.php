@@ -43,7 +43,7 @@ class HomeController extends Controller
 
         $whereSearch = 'dict.id';
         $whereSearchOp = '>';
-        $whereSearchVal = '1';
+        $whereSearchVal = '0';
         if ($search) {
             $whereSearch = 'dict.en';
             if (strlen ($search) < 3) {
