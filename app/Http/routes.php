@@ -276,10 +276,15 @@ Route::post('/editword', ['middleware' => 'auth', function(Request $request){
 
 }]);
 
-Route::get('/about', function(Request $request){
-    return view('home.empty');
-});
-
 Route::get('/contact', function(Request $request){
     return view('home.empty');
 });
+
+Route::group(['prefix' => 'cms', 'middleware' => 'cms'], function(){
+    Route::get('/', ['as' => 'cms', 'uses' =>'\GlebStarSimpleCms\Controllers\AdminController@index']);
+    Route::match(['get', 'post'], '/add', '\GlebStarSimpleCms\Controllers\AdminController@add');
+    Route::match(['get', 'post'], '/edit/{id}', '\GlebStarSimpleCms\Controllers\AdminController@edit');
+    Route::delete('/delete/{id}', '\GlebStarSimpleCms\Controllers\AdminController@delete');
+});
+
+Route::get('{path}', '\GlebStarSimpleCms\Controllers\CmsController@index')->where('path', '([A-z\d-\/_.]+)?');

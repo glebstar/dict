@@ -9,9 +9,8 @@ $request = $_SERVER['REQUEST_URI'];
 	<!-- start: Meta -->
 	<meta charset="utf-8">
 	<title>Частотный словарь английских слов онлайн - бесплатно - @yield('add_title')</title>
-	<meta name="description" content="GotYa Free Bootstrap Theme"/>
-	<meta name="keywords" content="Template, Theme, web, html5, css3, Bootstrap" />
-	<meta name="author" content="Łukasz Holeczek from creativeLabs"/>
+	<meta name="description" content="@yield('description')"/>
+	<meta name="keywords" content="@yield('keywords')" />
     <!-- end: Meta -->
 
     <!-- start: Mobile Specific -->
@@ -143,7 +142,7 @@ $request = $_SERVER['REQUEST_URI'];
 				<!-- start: Footer Menu Logo -->
 				<div class="span2">
 					<div id="footer-menu-logo">
-						<a href="#"><img src="img/logo-footer-menu.png" alt="logo" /></a>
+						<a href="#"><img src="/img/logo-footer-menu.png" alt="logo" /></a>
 					</div>
 				</div>
                 <!-- end: Footer Menu Logo -->
@@ -161,6 +160,9 @@ $request = $_SERVER['REQUEST_URI'];
 							@endcan
 							<li><a href="/about">Об этом сайте</a></li>
 							<li><a href="/contact">Связаться с нами</a></li>
+							@can('editor')
+							<li><a href="{{route('cms')}}">CMS</a></li>
+							@endcan
 							@can('auth')
 							<li><a href="/logout">Выход</a></li>
 							@endcan
