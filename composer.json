@@ -7,7 +7,8 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
-        "glebstar/laravel5-simple-cms": "dev-master"
+        "glebstar/laravel5-simple-cms": "dev-master",
+        "glebstar/laravel5-products": "1.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

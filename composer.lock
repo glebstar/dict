@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "60cd8d8d03b99e1d142d4c4d7e9f1ab3",
-    "content-hash": "ae1c10246edf756972ca32cb36577f7b",
+    "hash": "609e3bcd47decc35ffefafeb1d65ba81",
+    "content-hash": "b9d8e4e4ec72a1883ad36c259a24053f",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -162,17 +162,58 @@
             "time": "2015-11-06 14:35:42"
         },
         {
+            "name": "glebstar/laravel5-products",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/glebstar/laravel5-products.git",
+                "reference": "b7c75f1f1005df68b8600d8a784200d1c0c3597c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/glebstar/laravel5-products/zipball/b7c75f1f1005df68b8600d8a784200d1c0c3597c",
+                "reference": "b7c75f1f1005df68b8600d8a784200d1c0c3597c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.x",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GlebStarProducts\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gleb Starkov",
+                    "email": "glebstarkov@gmail.com"
+                }
+            ],
+            "description": "Products manager for Laravel 5",
+            "homepage": "https://github.com/glebstar/laravel5-products",
+            "keywords": [
+                "products laravel5"
+            ],
+            "time": "2016-08-24 10:46:22"
+        },
+        {
             "name": "glebstar/laravel5-simple-cms",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/glebstar/laravel5-simple-cms.git",
-                "reference": "ce4f0c126e18122ee3b173b6fb71567a5c76959a"
+                "reference": "a9bcf163efea0121d128efe0d55c575bec6de77b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/glebstar/laravel5-simple-cms/zipball/ce4f0c126e18122ee3b173b6fb71567a5c76959a",
-                "reference": "ce4f0c126e18122ee3b173b6fb71567a5c76959a",
+                "url": "https://api.github.com/repos/glebstar/laravel5-simple-cms/zipball/a9bcf163efea0121d128efe0d55c575bec6de77b",
+                "reference": "a9bcf163efea0121d128efe0d55c575bec6de77b",
                 "shasum": ""
             },
             "require": {
@@ -200,7 +241,7 @@
             "keywords": [
                 "cms laravel5"
             ],
-            "time": "2016-08-17 09:49:15"
+            "time": "2016-08-24 01:25:37"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -349,16 +390,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.2.43",
+            "version": "v5.2.44",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "5490b8f00564bb60839002f86828e27edd1e5610"
+                "reference": "f24b7acfb494437ef00bdd062bed61eb21535546"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/5490b8f00564bb60839002f86828e27edd1e5610",
-                "reference": "5490b8f00564bb60839002f86828e27edd1e5610",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f24b7acfb494437ef00bdd062bed61eb21535546",
+                "reference": "f24b7acfb494437ef00bdd062bed61eb21535546",
                 "shasum": ""
             },
             "require": {
@@ -439,7 +480,7 @@
                 "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (~2.0).",
                 "symfony/css-selector": "Required to use some of the crawler integration testing tools (2.8.*|3.0.*).",
                 "symfony/dom-crawler": "Required to use most of the crawler integration testing tools (2.8.*|3.0.*).",
-                "symfony/psr-http-message-bridge": "Required to psr7 bridging features (0.2.*)."
+                "symfony/psr-http-message-bridge": "Required to use psr7 bridging features (0.2.*)."
             },
             "type": "library",
             "extra": {
@@ -475,7 +516,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-08-10 12:23:59"
+            "time": "2016-08-23 13:03:29"
         },
         {
             "name": "league/flysystem",
@@ -2731,23 +2772,23 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "1.3.7",
+            "version": "1.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "4e8f0da10ac5802913afc151413bc8c53b6c2716"
+                "reference": "be2c607e43ce4c89ecd60e75c6a85c126e754aea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/4e8f0da10ac5802913afc151413bc8c53b6c2716",
-                "reference": "4e8f0da10ac5802913afc151413bc8c53b6c2716",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/be2c607e43ce4c89ecd60e75c6a85c126e754aea",
+                "reference": "be2c607e43ce4c89ecd60e75c6a85c126e754aea",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": "^5.3.3 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.4"
+                "phpunit/phpunit": "^4.8 || ^5.0"
             },
             "type": "library",
             "extra": {
@@ -2777,7 +2818,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2016-05-17 03:18:57"
+            "time": "2016-08-18 05:49:44"
         },
         {
             "name": "sebastian/exporter",

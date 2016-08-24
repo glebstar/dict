@@ -41,6 +41,24 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+app()->bind ('current_user_type', function(){
+    $user = \Auth::user();
+
+    if (! $user) {
+        return 'quest';
+    }
+
+    if(1 == $user->role) {
+        return 'admin';
+    }
+
+    if(4 == $user->role) {
+        return 'manager';
+    }
+
+    return 'auth';
+});
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

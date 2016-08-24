@@ -287,4 +287,4 @@ Route::group(['prefix' => 'cms', 'middleware' => 'cms'], function(){
     Route::delete('/delete/{id}', '\GlebStarSimpleCms\Controllers\AdminController@delete');
 });
 
-Route::get('{path}', '\GlebStarSimpleCms\Controllers\CmsController@index')->where('path', '([A-z\d-\/_.]+)?');
+//Route::get('{path}', '\GlebStarSimpleCms\Controllers\CmsController@index')->where('path', '([A-z\d-\/_.]+)?');
